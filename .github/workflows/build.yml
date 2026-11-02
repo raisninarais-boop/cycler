@@ -1,4 +1,4 @@
-name: Build APK
+name: Build APK v2
 on:
   workflow_dispatch:
   push:
@@ -22,6 +22,7 @@ jobs:
       - name: Build
         run: |
           unzip -q AirplaneCycler.zip
+          sed -i 's/ic_lock_airplane_mode/ic_dialog_info/' AirplaneCycler/app/src/main/java/com/airplanecycler/app/CycleService.kt
           cd AirplaneCycler
           gradle assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
